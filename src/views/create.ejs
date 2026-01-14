@@ -1,0 +1,5 @@
+<%- include('layout', { title: 'Create Post', description: 'Write something electric' }) %>
+<form action="/create" method="post">
+  <label>Title</label>
+  <input name="title" required maxlength="160"/>
+  <label>Excerpt</label>

@@ -1,0 +1,16 @@
+<%- include('layout', { title: 'Edit Post', description: 'Update your story' }) %>
+<form action="/edit/<%= post.slug %>?_method=PUT" method="post">
+  <label>Title</label>
+  <input name="title" required maxlength="160" value="<%= post.title %>" />
+
+  <label>Excerpt</label>
+  <textarea name="excerpt" maxlength="300"><%= post.excerpt || '' %></textarea>
+
+  <label>Content</label>
+  <textarea name="content" rows="10" required><%= post.content %></textarea>
+
+  <label>Tags (comma separated)</label>
+  <input name="tags" value="<%= post.tags ? post.tags.join(', ') : '' %>" />
+
+  <button type="submit">Update</button>
+</form>

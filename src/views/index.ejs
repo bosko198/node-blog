@@ -1,0 +1,24 @@
+<%- include('layout', { title: 'Home', description: 'Latest posts', q }) %>
+<section>
+  <% if (posts.length === 0) { %>
+    <p>No posts yet.</p>
+  <% } else { %>
+    <ul>
+      <% posts.forEach(p => { %>
+        <li>
+          <a href="/post/<%= p.slug %>"><%= p.title %></a>
+          <small>— <%= p.createdAt.toDateString() %></small>
+          <% if (p.excerpt) { %><p><%= p.excerpt %></p><% } %>
+          <% if (p.tags && p.tags.length) { %>
+            <p>Tags: <%= p.tags.join(', ') %></p>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+    <nav>
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/?page=<%= i %><%= q ? '&q=' + q : '' %>" <%= i === page ? 'style="font-weight:bold;"' : '' %>><%= i %></a>
+      <% } %>
+    </nav>
+  <% } %>
+</section>
